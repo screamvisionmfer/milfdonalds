@@ -1,8 +1,8 @@
 const PUMPFUN_URL = "#";
 const TOKEN_CA = "(token address)";
 const DEXSCREENER_URL = "#";
-const TELEGRAM_URL = "#";
-const X_URL = "#";
+const TELEGRAM_URL = "https://t.me/milfdonalds";
+const X_URL = "https://x.com/milfdonaldsol";
 
 const MENU_ITEMS = [
   {
