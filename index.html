@@ -13,7 +13,22 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <main>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="MilfDonalds home">
+        <img src="public/assets/milfdonalds-logo-square.png" alt="" />
+        <span>MilfDonalds</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#tokenomics">Tokenomics</a>
+      </nav>
+
+      <a class="header-order" href="#" data-link="pumpfun">Order</a>
+    </header>
+
+    <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-logo-wrap">
           <img
@@ -26,37 +41,16 @@
         <div class="hero-copy">
           <p class="eyebrow">$MILF / SOLANA / HOT & UNHINGED</p>
           <h1 id="hero-title">Welcome to MilfDonalds</h1>
-          <p class="subheadline">Not fast food. Fast degeneracy.</p>
-          <p class="description">
-            A crooked meme token served hot with extra sauce, zero nutrition and maximum chart
-            cholesterol.
-          </p>
+          <p class="subheadline">Fast food? No. Fast degeneracy.</p>
 
           <div class="ca-panel" aria-label="Contract address placeholder">
             <span id="contract-address">CA: (token address)</span>
-            <button class="copy-button" type="button" data-copy="CA: (token address)">
-              Copy
-            </button>
+            <button class="copy-button" type="button" data-copy="(token address)">Copy</button>
           </div>
 
           <div class="hero-actions" aria-label="Primary links">
-            <a class="action-button primary" href="#">Buy on Pumpfun</a>
-            <a
-              class="action-button"
-              href="https://x.com/milfdonaldsol"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Follow X
-            </a>
-            <a
-              class="action-button"
-              href="https://t.me/milfdonalds"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Join Telegram
-            </a>
+            <a class="action-button primary" href="#" data-link="pumpfun">Order on Pump.fun</a>
+            <a class="action-button" href="#" data-link="dexscreener">View Chart</a>
           </div>
         </div>
       </section>
@@ -69,77 +63,45 @@
         </div>
       </section>
 
-      <section class="about section-band" aria-labelledby="about-title">
-        <div class="section-inner">
-          <div class="section-stamp">OPEN 24/7</div>
-          <h2 id="about-title">What is MilfDonalds?</h2>
-          <p>
-            MilfDonalds is a meme-first token built for people who like their charts crispy, their
-            logos crooked and their liquidity served with a side of chaos. No fake utility. No
-            corporate roadmap. Just a ridiculous brand, a loud community and a menu full of bad
-            financial decisions.
-          </p>
-        </div>
-      </section>
+      <section id="about" class="about section-band" aria-labelledby="about-title">
+        <div class="section-inner about-grid">
+          <div class="about-copy">
+            <p class="section-stamp">Open 24/7</p>
+            <h2 id="about-title">What is MilfDonalds?</h2>
+            <p>
+              MilfDonalds is a meme-first token built for people who like their charts crispy,
+              their logos crooked and their liquidity served with a side of chaos. No fake utility.
+              No corporate roadmap. Just a ridiculous brand, a loud community and a menu full of
+              bad financial decisions.
+            </p>
+          </div>
 
-      <section class="mascot section-band" aria-labelledby="mascot-title">
-        <div class="section-inner mascot-grid">
-          <figure class="mascot-art">
+          <figure class="mascot-card">
             <img
               src="public/assets/milfdonalds-shift-manager.png"
               alt="MilfDonalds shift manager mascot"
             />
+            <figcaption>Employee of the pump</figcaption>
           </figure>
-
-          <div class="mascot-copy">
-            <p class="eyebrow">Now Hiring Chaos</p>
-            <h2 id="mascot-title">Meet the Shift Manager</h2>
-            <p>
-              She clocks in when the candles turn green, the fries get salty and the ice cream
-              machine starts lying again. Ask nicely and she might serve the dip.
-            </p>
-            <div class="mascot-ticket">Employee of the pump</div>
-          </div>
         </div>
       </section>
 
-      <section class="menu section-band yellow-band" aria-labelledby="menu-title">
+      <section id="menu" class="menu section-band yellow-band" aria-labelledby="menu-title">
         <div class="section-inner">
           <div class="section-heading">
             <p class="eyebrow">Combo Board</p>
-            <h2 id="menu-title">Degenerate Value Menu</h2>
+            <h2 id="menu-title">Today&rsquo;s Menu</h2>
           </div>
 
-          <div class="menu-grid">
-            <article class="menu-card">
-              <span class="menu-number">01</span>
-              <h3>McPump</h3>
-              <p>Freshly cooked green candles with unstable sauce.</p>
-            </article>
-            <article class="menu-card">
-              <span class="menu-number">02</span>
-              <h3>Rug Fries</h3>
-              <p>Salty, crispy and emotionally damaging.</p>
-            </article>
-            <article class="menu-card">
-              <span class="menu-number">03</span>
-              <h3>Liquidity Shake</h3>
-              <p>Thick, sweet and probably gone by morning.</p>
-            </article>
-            <article class="menu-card">
-              <span class="menu-number">04</span>
-              <h3>Happy Milf Meal</h3>
-              <p>Comes with one toy, one dream and zero guarantees.</p>
-            </article>
-          </div>
+          <div id="menu-grid" class="food-grid" aria-live="polite"></div>
         </div>
       </section>
 
-      <section class="token section-band" aria-labelledby="token-title">
+      <section id="tokenomics" class="token section-band" aria-labelledby="token-title">
         <div class="section-inner">
           <div class="section-heading">
             <p class="eyebrow">Receipt Check</p>
-            <h2 id="token-title">Token Info</h2>
+            <h2 id="token-title">Tokenomics</h2>
           </div>
 
           <div class="token-grid">
@@ -152,8 +114,8 @@
               <strong>Solana</strong>
             </div>
             <div class="token-box">
-              <span>Contract</span>
-              <strong>CA: (token address)</strong>
+              <span>CA</span>
+              <strong data-token-ca>(token address)</strong>
             </div>
             <div class="token-box">
               <span>Tax</span>
@@ -165,13 +127,9 @@
             </div>
             <div class="token-box">
               <span>Roadmap</span>
-              <strong>Cook, serve, pump, repeat</strong>
+              <strong>Cook. Serve. Pump. Repeat.</strong>
             </div>
           </div>
-
-          <p class="disclaimer">
-            This is a meme token. No promises, no financial advice, no nutrition facts.
-          </p>
         </div>
       </section>
     </main>
@@ -185,9 +143,10 @@
       />
       <p>&copy; 2026 MilfDonalds. Lovingly served by degenerates.</p>
       <nav aria-label="Social links">
-        <a href="https://x.com/milfdonaldsol" target="_blank" rel="noopener noreferrer">X</a>
-        <a href="https://t.me/milfdonalds" target="_blank" rel="noopener noreferrer">Telegram</a>
-        <a href="#">Pumpfun</a>
+        <a href="#" data-link="x">X</a>
+        <a href="#" data-link="telegram">Telegram</a>
+        <a href="#" data-link="pumpfun">Pump.fun</a>
+        <a href="#" data-link="dexscreener">Dexscreener</a>
       </nav>
     </footer>
   </body>
