@@ -6,8 +6,8 @@ const LINKS = {
     chart: "#"
   },
   base: {
-    ca: "(base token address)",
-    buy: "https://cc0.company/",
+    ca: "0xe5da2924f4cf8f43c6e0378352aa982d969f362b",
+    buy: "https://cc0.company/bg/token/0xe5da2924f4cf8f43c6e0378352aa982d969f362b",
     chart: "#"
   },
   telegram: "https://t.me/milfdonalds"
@@ -124,7 +124,7 @@ function renderMenu() {
             <span>${item.price}</span>
           </div>
           <p>${item.description}</p>
-          <a class="order-link" href="${LINKS.solana.buy}" data-link="solana-buy">Order</a>
+          <button class="order-link" type="button" data-open-order>Order</button>
         </div>
       </article>
     `
@@ -165,9 +165,6 @@ function renderBranches() {
           <div class="branch-actions">
             <a class="order-link" href="${LINKS[branch.key].buy}" data-link="${branch.buyLink}">
               ${branch.orderText}
-            </a>
-            <a class="order-link chart-link" href="${LINKS[branch.key].chart}" data-link="${branch.chartLink}">
-              View Chart
             </a>
           </div>
         </div>
@@ -224,8 +221,44 @@ function setupCopyButtons() {
   });
 }
 
+function setupOrderModal() {
+  const modal = document.querySelector("#order-modal");
+  const openButtons = document.querySelectorAll("[data-open-order]");
+  const closeButtons = document.querySelectorAll("[data-close-order]");
+
+  if (!modal) {
+    return;
+  }
+
+  const openModal = () => {
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+  };
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+  };
+
+  openButtons.forEach((button) => button.addEventListener("click", openModal));
+  closeButtons.forEach((button) => button.addEventListener("click", closeModal));
+
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeModal();
+    }
+  });
+}
+
 renderMenu();
 renderBranches();
 setupTokenText();
 applyConfiguredLinks();
 setupCopyButtons();
+setupOrderModal();

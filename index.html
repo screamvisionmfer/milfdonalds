@@ -172,5 +172,19 @@
         <a href="#" data-link="base-buy">Base Order</a>
       </nav>
     </footer>
+
+    <div id="order-modal" class="order-modal" aria-hidden="true">
+      <div class="order-modal-card" role="dialog" aria-modal="true" aria-labelledby="order-title">
+        <button class="modal-close" type="button" data-close-order aria-label="Close order popup">
+          X
+        </button>
+        <p class="eyebrow">Choose Your Counter</p>
+        <h2 id="order-title">Where do you want to order?</h2>
+        <div class="modal-actions">
+          <a class="order-link" href="#" data-link="solana-buy">Solana</a>
+          <a class="order-link base-choice" href="#" data-link="base-buy">Base</a>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
