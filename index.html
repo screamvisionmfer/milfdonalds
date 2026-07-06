@@ -20,12 +20,13 @@
       </a>
 
       <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#branches">Locations</a>
         <a href="#menu">Menu</a>
         <a href="#about">About</a>
         <a href="#tokenomics">Tokenomics</a>
       </nav>
 
-      <a class="header-order" href="#" data-link="pumpfun">Order</a>
+      <a class="header-order" href="#" data-link="solana-buy">Order</a>
     </header>
 
     <main id="top">
@@ -39,17 +40,25 @@
         </div>
 
         <div class="hero-copy">
-          <p class="eyebrow">$MILF / SOLANA / HOT & UNHINGED</p>
+          <p class="eyebrow">$MILF / MULTICHAIN / HOT & UNHINGED</p>
           <h1 id="hero-title">Welcome to MilfDonalds</h1>
           <p class="subheadline">Fast food? No. Fast degeneracy.</p>
+          <p class="hero-note">Two streets. Two managers. One menu.</p>
 
-          <div class="ca-panel" aria-label="Contract address placeholder">
-            <span id="contract-address">CA: (token address)</span>
-            <button class="copy-button" type="button" data-copy="(token address)">Copy</button>
+          <div class="ca-panel ca-stack" aria-label="Contract address placeholders">
+            <div class="ca-row">
+              <span>Solana CA: <strong data-ca-value="solana">(solana token address)</strong></span>
+              <button class="copy-button" type="button" data-copy-chain="solana">Copy</button>
+            </div>
+            <div class="ca-row">
+              <span>Base CA: <strong data-ca-value="base">(base token address)</strong></span>
+              <button class="copy-button" type="button" data-copy-chain="base">Copy</button>
+            </div>
           </div>
 
           <div class="hero-actions" aria-label="Primary links">
-            <a class="action-button primary" href="#" data-link="pumpfun">Order on Pump.fun</a>
+            <a class="action-button primary" href="#" data-link="solana-buy">Order on Solana</a>
+            <a class="action-button" href="#" data-link="base-buy">Order on Base</a>
           </div>
         </div>
       </section>
@@ -85,6 +94,17 @@
         </div>
       </section>
 
+      <section id="branches" class="branches section-band" aria-labelledby="branches-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Two streets. Two managers. One menu.</p>
+            <h2 id="branches-title">Choose Your MilfDonalds</h2>
+          </div>
+
+          <div id="branch-grid" class="branch-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
       <section id="menu" class="menu section-band yellow-band" aria-labelledby="menu-title">
         <div class="section-inner">
           <div class="section-heading">
@@ -110,11 +130,15 @@
             </div>
             <div class="token-box">
               <span>Chain</span>
-              <strong>Solana</strong>
+              <strong>Solana + Base</strong>
             </div>
             <div class="token-box">
-              <span>CA</span>
-              <strong data-token-ca>(token address)</strong>
+              <span>Solana CA</span>
+              <strong data-ca-value="solana">(solana token address)</strong>
+            </div>
+            <div class="token-box">
+              <span>Base CA</span>
+              <strong data-ca-value="base">(base token address)</strong>
             </div>
             <div class="token-box">
               <span>Tax</span>
@@ -144,7 +168,8 @@
       <nav aria-label="Social links">
         <a href="#" data-link="x">X</a>
         <a href="#" data-link="telegram">Telegram</a>
-        <a href="#" data-link="pumpfun">Pump.fun</a>
+        <a href="#" data-link="solana-buy">Solana Order</a>
+        <a href="#" data-link="base-buy">Base Order</a>
       </nav>
     </footer>
   </body>

@@ -1,7 +1,17 @@
-const PUMPFUN_URL = "https://pump.fun/coin/CCdydK4q2yQTAFBgxxoapmgENbcj5kp58uJ9MYXwpump";
-const TOKEN_CA = "CCdydK4q2yQTAFBgxxoapmgENbcj5kp58uJ9MYXwpump";
-const TELEGRAM_URL = "https://t.me/milfdonalds";
-const X_URL = "https://x.com/milfdonaldsol";
+const LINKS = {
+  x: "https://x.com/milfdonaldscoin",
+  solana: {
+    ca: "(solana token address)",
+    buy: "#",
+    chart: "#"
+  },
+  base: {
+    ca: "(base token address)",
+    buy: "https://cc0.company/",
+    chart: "#"
+  },
+  telegram: "#"
+};
 
 const MENU_ITEMS = [
   {
@@ -42,10 +52,42 @@ const MENU_ITEMS = [
   }
 ];
 
+const BRANCHES = [
+  {
+    key: "solana",
+    label: "Original Kitchen",
+    name: "Solana Street",
+    manager: "Misty Buns",
+    character: "blonde MilfDonalds cashier",
+    text: "The original Solana kitchen. Fast orders, hot fries and pump.fun chaos.",
+    chain: "Solana",
+    image: "public/assets/milfdonalds-shift-manager.png",
+    orderText: "Order on Solana",
+    buyLink: "solana-buy",
+    chartLink: "solana-chart"
+  },
+  {
+    key: "base",
+    label: "New Branch",
+    name: "Base Street",
+    manager: "Sasha Sauce",
+    character: "blue-haired alt/zoomer MilfDonalds cashier",
+    text: "The new Base branch. Blue hair, onchain orders and extra EVM sauce.",
+    chain: "Base",
+    image: "public/assets/milfdonalds-base-manager.png",
+    orderText: "Order on Base",
+    buyLink: "base-buy",
+    chartLink: "base-chart"
+  }
+];
+
 const LINK_URLS = {
-  pumpfun: PUMPFUN_URL,
-  telegram: TELEGRAM_URL,
-  x: X_URL
+  x: LINKS.x,
+  telegram: LINKS.telegram,
+  "solana-buy": LINKS.solana.buy,
+  "solana-chart": LINKS.solana.chart,
+  "base-buy": LINKS.base.buy,
+  "base-chart": LINKS.base.chart
 };
 
 function applyConfiguredLinks() {
@@ -56,6 +98,9 @@ function applyConfiguredLinks() {
     if (url !== "#") {
       link.target = "_blank";
       link.rel = "noopener noreferrer";
+    } else {
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
     }
   });
 }
@@ -79,7 +124,52 @@ function renderMenu() {
             <span>${item.price}</span>
           </div>
           <p>${item.description}</p>
-          <a class="order-link" href="${PUMPFUN_URL}" data-link="pumpfun">Order</a>
+          <a class="order-link" href="${LINKS.solana.buy}" data-link="solana-buy">Order</a>
+        </div>
+      </article>
+    `
+  ).join("");
+}
+
+function renderBranches() {
+  const branchGrid = document.querySelector("#branch-grid");
+
+  if (!branchGrid) {
+    return;
+  }
+
+  branchGrid.innerHTML = BRANCHES.map(
+    (branch) => `
+      <article class="branch-card ${branch.key === "base" ? "base-branch" : ""}">
+        <div class="branch-image">
+          <img src="${branch.image}" alt="${branch.character}" loading="lazy" />
+        </div>
+        <div class="branch-copy">
+          <span class="branch-label">${branch.label}</span>
+          <h3>${branch.name}</h3>
+          <p>${branch.text}</p>
+          <dl class="branch-fields">
+            <div>
+              <dt>Chain</dt>
+              <dd>${branch.chain}</dd>
+            </div>
+            <div>
+              <dt>Manager</dt>
+              <dd>${branch.manager}</dd>
+            </div>
+            <div>
+              <dt>CA</dt>
+              <dd>${LINKS[branch.key].ca}</dd>
+            </div>
+          </dl>
+          <div class="branch-actions">
+            <a class="order-link" href="${LINKS[branch.key].buy}" data-link="${branch.buyLink}">
+              ${branch.orderText}
+            </a>
+            <a class="order-link chart-link" href="${LINKS[branch.key].chart}" data-link="${branch.chartLink}">
+              View Chart
+            </a>
+          </div>
         </div>
       </article>
     `
@@ -103,43 +193,39 @@ async function writeClipboard(text) {
   textarea.remove();
 }
 
-function setupCopyButton() {
-  const copyButton = document.querySelector(".copy-button");
-  const contractAddress = document.querySelector("#contract-address");
-  const tokenCa = document.querySelector("[data-token-ca]");
+function setupTokenText() {
+  document.querySelectorAll("[data-ca-value]").forEach((element) => {
+    const chain = element.dataset.caValue;
+    element.textContent = LINKS[chain]?.ca || "";
+  });
+}
 
-  if (contractAddress) {
-    contractAddress.textContent = `CA: ${TOKEN_CA}`;
-  }
+function setupCopyButtons() {
+  document.querySelectorAll("[data-copy-chain]").forEach((copyButton) => {
+    const chain = copyButton.dataset.copyChain;
+    const copyText = LINKS[chain]?.ca || "";
 
-  if (tokenCa) {
-    tokenCa.textContent = TOKEN_CA;
-  }
+    copyButton.addEventListener("click", async () => {
+      const originalText = copyButton.textContent;
 
-  if (!copyButton) {
-    return;
-  }
+      try {
+        await writeClipboard(copyText);
+        copyButton.textContent = "Copied";
+        copyButton.classList.add("copied");
+      } catch {
+        copyButton.textContent = "Try Again";
+      }
 
-  copyButton.dataset.copy = TOKEN_CA;
-
-  copyButton.addEventListener("click", async () => {
-    const originalText = copyButton.textContent;
-
-    try {
-      await writeClipboard(TOKEN_CA);
-      copyButton.textContent = "Copied";
-      copyButton.classList.add("copied");
-    } catch {
-      copyButton.textContent = "Try Again";
-    }
-
-    window.setTimeout(() => {
-      copyButton.textContent = originalText;
-      copyButton.classList.remove("copied");
-    }, 1400);
+      window.setTimeout(() => {
+        copyButton.textContent = originalText;
+        copyButton.classList.remove("copied");
+      }, 1400);
+    });
   });
 }
 
 renderMenu();
+renderBranches();
+setupTokenText();
 applyConfiguredLinks();
-setupCopyButton();
+setupCopyButtons();

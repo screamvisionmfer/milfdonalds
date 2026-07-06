@@ -288,6 +288,14 @@ h2 {
   text-wrap: balance;
 }
 
+.hero-note {
+  margin: -0.65rem auto 1.35rem;
+  color: var(--white);
+  font-family: "Arial Black", Arial, system-ui, sans-serif;
+  font-size: 1.05rem;
+  text-shadow: 2px 2px 0 var(--black);
+}
+
 .ca-panel {
   display: inline-flex;
   align-items: center;
@@ -301,6 +309,21 @@ h2 {
   border-radius: var(--radius);
   box-shadow: var(--soft-shadow);
   transform: rotate(0.6deg);
+}
+
+.ca-stack {
+  display: grid;
+  width: min(760px, 100%);
+}
+
+.ca-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+}
+
+.ca-row + .ca-row {
+  border-top: 4px solid var(--black);
 }
 
 .ca-panel span {
@@ -478,6 +501,138 @@ h2 {
   border-top: 5px solid var(--black);
   text-align: center;
   text-transform: uppercase;
+}
+
+.branch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.branch-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.1fr);
+  min-width: 0;
+  overflow: hidden;
+  color: var(--black);
+  background: var(--white);
+  border: 6px solid var(--black);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transform: rotate(-0.7deg);
+}
+
+.branch-card.base-branch {
+  background: linear-gradient(135deg, var(--white) 0%, #d9edff 100%);
+  box-shadow: 8px 8px 0 rgba(0, 82, 255, 0.55);
+  transform: rotate(0.7deg);
+}
+
+.branch-image {
+  min-width: 0;
+  background: var(--red);
+  border-right: 5px solid var(--black);
+}
+
+.branch-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.branch-copy {
+  display: grid;
+  align-content: start;
+  gap: 0.9rem;
+  padding: 1.15rem;
+}
+
+.branch-label {
+  width: fit-content;
+  padding: 0.32rem 0.62rem;
+  color: var(--black);
+  background: var(--yellow);
+  border: 3px solid var(--black);
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 rgba(23, 9, 0, 0.45);
+  font-family: "Arial Black", Arial, system-ui, sans-serif;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.base-branch .branch-label {
+  color: var(--white);
+  background: #0052ff;
+}
+
+.branch-card h3 {
+  margin-bottom: 0;
+  color: var(--red);
+  font-size: 2.45rem;
+  line-height: 0.95;
+  text-shadow: 3px 3px 0 var(--yellow);
+  text-transform: uppercase;
+}
+
+.base-branch h3 {
+  text-shadow: 3px 3px 0 #7db7ff;
+}
+
+.branch-copy p {
+  margin-bottom: 0;
+  font-family: "Arial Black", Arial, system-ui, sans-serif;
+  font-size: 0.98rem;
+}
+
+.branch-fields {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.branch-fields div {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 0.6rem;
+  padding: 0.45rem 0.55rem;
+  background: var(--yellow);
+  border: 3px solid var(--black);
+  border-radius: var(--radius);
+}
+
+.base-branch .branch-fields div {
+  background: #d9edff;
+}
+
+.branch-fields dt,
+.branch-fields dd {
+  margin: 0;
+  font-family: "Arial Black", Arial, system-ui, sans-serif;
+  overflow-wrap: anywhere;
+}
+
+.branch-fields dt {
+  color: var(--deep-red);
+  text-transform: uppercase;
+}
+
+.branch-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.chart-link {
+  color: var(--white);
+  background: var(--black);
+}
+
+.chart-link:hover,
+.chart-link:focus-visible {
+  color: var(--black);
+  background: var(--yellow);
 }
 
 .yellow-band {
@@ -773,6 +928,14 @@ h2 {
     grid-template-columns: 1fr;
   }
 
+  .branch-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .branch-card {
+    grid-template-columns: minmax(220px, 0.85fr) minmax(0, 1.15fr);
+  }
+
   .mascot-card {
     width: 100%;
     max-width: 420px;
@@ -851,6 +1014,14 @@ h2 {
     flex-direction: column;
   }
 
+  .ca-stack {
+    display: grid;
+  }
+
+  .ca-row {
+    grid-template-columns: 1fr;
+  }
+
   .ca-panel span {
     font-size: 0.95rem;
   }
@@ -885,6 +1056,8 @@ h2 {
   .mascot-card,
   .food-card,
   .food-card:nth-child(even),
+  .branch-card,
+  .branch-card.base-branch,
   .token-box {
     width: calc(100vw - 2rem);
     max-width: 100%;
@@ -910,6 +1083,23 @@ h2 {
 
   .food-grid,
   .token-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .branch-card {
+    grid-template-columns: 1fr;
+  }
+
+  .branch-image {
+    border-right: 0;
+    border-bottom: 5px solid var(--black);
+  }
+
+  .branch-card h3 {
+    font-size: 1.9rem;
+  }
+
+  .branch-actions {
     grid-template-columns: 1fr;
   }
 
