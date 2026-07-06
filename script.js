@@ -1,6 +1,5 @@
-const PUMPFUN_URL = "#";
-const TOKEN_CA = "(token address)";
-const DEXSCREENER_URL = "#";
+const PUMPFUN_URL = "https://pump.fun/coin/CCdydK4q2yQTAFBgxxoapmgENbcj5kp58uJ9MYXwpump";
+const TOKEN_CA = "CCdydK4q2yQTAFBgxxoapmgENbcj5kp58uJ9MYXwpump";
 const TELEGRAM_URL = "https://t.me/milfdonalds";
 const X_URL = "https://x.com/milfdonaldsol";
 
@@ -45,7 +44,6 @@ const MENU_ITEMS = [
 
 const LINK_URLS = {
   pumpfun: PUMPFUN_URL,
-  dexscreener: DEXSCREENER_URL,
   telegram: TELEGRAM_URL,
   x: X_URL
 };
