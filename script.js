@@ -1,8 +1,8 @@
 const LINKS = {
   x: "https://x.com/milfdonaldscoin",
   solana: {
-    ca: "(solana token address)",
-    buy: "#",
+    ca: "CCdydK4q2yQTAFBgxxoapmgENbcj5kp58uJ9MYXwpump",
+    buy: "https://pump.fun/coin/CCdydK4q2yQTAFBgxxoapmgENbcj5kp58uJ9MYXwpump",
     chart: "#"
   },
   base: {
@@ -10,7 +10,7 @@ const LINKS = {
     buy: "https://cc0.company/",
     chart: "#"
   },
-  telegram: "#"
+  telegram: "https://t.me/milfdonalds"
 };
 
 const MENU_ITEMS = [
